@@ -10,6 +10,12 @@ const [fullName, setFullName]=useState('')
 const [comment, setComment]=useState('')
 const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
 
+useEffect(()=>{
+    axios.get(feedbackEndpoint).then((response)=>{
+        setFeedbackData(response.data);
+        console.log(response.data)
+    });
+},[]);
 
 const getFeedbackData=()=>{
     axios.get(feedbackEndpoint).then((getFeedbackData)=>{
@@ -28,7 +34,7 @@ const postFeedback=(e)=>{
 
     
     return(<div>
-        <Form>
+        <Form onSubmit={postFeedback}>
             <Form.Control type='text' id="fullName" placeholder="Name" onChange={(e)=>setFullName(e.target.value)}> </Form.Control>
             <Form.Control type='text' id='feedback' placeholder="Feedback" onChange={(e)=>setComment(e.target.value)}></Form.Control>
             <Button variant='primary' type='submit'></Button>
