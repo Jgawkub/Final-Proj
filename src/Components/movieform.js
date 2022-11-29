@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Movie from "./movie";
 //To Do still:
-// 1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? 
+// 1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? Did this. How to make this into something that I can do on click.
 //2.  If time, create a way to push films to add selected films to like a to a too watch list. 
 
 
