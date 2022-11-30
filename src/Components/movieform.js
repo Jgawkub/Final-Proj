@@ -22,7 +22,6 @@ export default function MovieForm({test,}){
     const[director,setDirector]=useState('')
     const[image,setImage]=useState('')
     const[plot,setPlot]=useState('')
-    // const[review,setReview]=useState('')
     const[search,setSearch]=useState('')
     console.log(search)
     useEffect(()=>{
@@ -48,11 +47,23 @@ export default function MovieForm({test,}){
             plot,
         }).then(()=>{getFilmData()});
         console.log(title+director)
+      
 
     }
     const deletMovie=(id)=>{
         console.log("deleting"+ title)
         axios.delete(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`).then(()=>{getFilmData()})
+    }
+    //I use this to just clear the inputs in 
+    const clearInput=()=>{
+        document.getElementById('title').value=('')
+        document.getElementById('date').value=('')
+        document.getElementById('director').value=('')
+        document.getElementById('url').value=('')  
+        document.getElementById('plot').value=('')
+     
+      
+       
     }
 
 //I map over my movie API and then pass the information down to my movie component as well as funcrtions needed to do API calls. 
@@ -78,11 +89,11 @@ export default function MovieForm({test,}){
             <Form.Control type='text' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
             <Form.Control type='text' ide='filter' placeholder="Filter" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
-            <Button variant="primary" onClick={test} type="submit">Submit</Button>
+            <Button variant="primary" type='submit' onClick={clearInput}>Submit</Button>
         </Form>
-        <Row className="justify-content-center">
+        <Row >
         <Stack direction="horizontal" gap={3} className="d-flex flex-wrap justify-content-center">
            {renderMovie}
         </Stack>

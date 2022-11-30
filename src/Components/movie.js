@@ -39,12 +39,14 @@ const updateMovie=(id,e)=>{
 
 console.log(review)
 
-
+const action=()=>{
+  console.log("Butts")
+}
 
 
   //I take the props from the movie form component and using React bootstrap make it into a card. 
   return(<div>
-        <Card style={{width:'18rem'}}>
+        <Card onClick={action} style={{width:'18rem'}}>
           <Button variant='danger' onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
             <Card.Img  variant="top" src={info.image}/>
         <Card.Body>
