@@ -9,9 +9,10 @@ import Movie from "./movie";
 import Stack from 'react-bootstrap/Stack'
 
 //To Do still:
-// 1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? Did this. How to make this into something that I can do on click.
+//1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? Did this. How to make this into something that I can do on click.
 //2.  If time, create a way to push films to add selected films to like a to a too watch list. 
 //3. When somone clicks on a movie card, it takes them to just a singular vision. 
+//4. Let people edit the movie details?
 
 //In this component I handle my posting and getting data. I load all my movie info to an API. All these states are a little verbose, could I put these in the API itself? 
 export default function MovieForm({test,}){
@@ -66,22 +67,20 @@ export default function MovieForm({test,}){
        
     }
 
-//I map over my movie API and then pass the information down to my movie component as well as funcrtions needed to do API calls. 
+// I'v implemented a .filter method here to sort through all of the I map over my movie API and then pass the information down to my movie component as well as functions needed to do API calls. 
     const renderMovie=filmData.filter((movie)=>{
         return search==''? movie:movie.title.includes(search)
-    }).map((movie,index)=>{
-        console.log({index})
+            }).map((movie,index)=>{
+                console.log({index})
         // return(<div key={index}><div>{movie.title}</div></div>)
-        return(<div key={movie+index}>
-        <Movie info={movie}
-        filmData={filmData}
-        getFilmData={getFilmData}
-        setFilmData={setFilmData}
-        deleteMovie={deletMovie}
-       /></div>)
-       
-        
-    })
+                return(<div key={movie+index}>
+                    <Movie info={movie}
+                    filmData={filmData}
+                    getFilmData={getFilmData}
+                    setFilmData={setFilmData}
+                    deleteMovie={deletMovie}
+                    /></div>)    
+                })
 
     return(<div>
         <Form onSubmit={postMovie}>
@@ -90,7 +89,7 @@ export default function MovieForm({test,}){
             <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
             <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
-            <Form.Control type='text' ide='filter' placeholder="Filter" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
+            <Form.Control type='text' ide='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
             <Button variant="primary" type='submit' onClick={clearInput}>Submit</Button>
         </Form>
         <Row >
