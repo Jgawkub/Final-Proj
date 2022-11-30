@@ -4,7 +4,8 @@ import Card from"react-bootstrap/Card"
 import Comment1 from "./comment1";
 import axios from "axios";
 
-
+// To Do:
+// Be able to delete a review? How could I accomplish this. 
 
 
 export default function Movie({info, getFilmData, filmData, setFilmData, deleteMovie}){

@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form"
 
 
 export default function Comment1({review, info, updateMovie, addReview, setReview, reviewList, setReviewList}){
-const [commentBox, setCommentBox]=(useState(false))
+const [commentBox, setCommentBox]=useState(false)
 
 
 
@@ -20,7 +20,7 @@ const renderComment=()=>{
 
     return(<div><Button variant="primary" onClick={renderComment}>Submit your own Review</Button>
     {commentBox===true ? <div>
-        <Form.Control as='textarea' placeholder="Leave Review Here" id={`review + ${info.id}`}/>
+        <Form.Control as='textarea' placeholder="Leave Review Here" id={`review + ${info.id}`} />
         <Button variant='primary' onClick={()=>{updateMovie(info.id); setCommentBox(false)}}>Submit</Button>
         </div>:null}
         </div>

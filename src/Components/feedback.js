@@ -43,6 +43,11 @@ const deleteFeedback=(id)=>{
 const comments=feedbackData.map((f,index)=>{
     return(<div key={f+index}>
         <FeedbackRender info={f}
+        fullName={fullName}
+        setFullName={setFullName}
+        comment={comment}
+        setComment={setComment}
+
         feedbackData={feedbackData}
         getFeedbackData={getFeedbackData}
         deleteFeedback={deleteFeedback}/></div>)
