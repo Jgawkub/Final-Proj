@@ -1,14 +1,19 @@
 import React, {useState} from "react"
 import { useParams } from "react-router-dom"
+import Movie from "./movie"
 
 
 
 
 
 
-export default function Test({m, filmData}){
-console.log(m)
+export default function Test({ info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle, star, newRating}){
+
 
     
-    return(<div> HOWDY COWBOY {m.title} </div>)
+    return(<div> HOWDY COWBOY 
+        
+     
+        
+         </div>)
 }

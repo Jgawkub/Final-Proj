@@ -6,25 +6,22 @@ import axios from "axios";
 import { Link, Route, Routes, useNavigate, useParams  } from 'react-router-dom'
 import Test from "./test";
 import TestMovie from "./testmovie";
+import ReactStars from "react-rating-stars-component";
+
+
 
 // To Do:
 // Be able to delete a review? How could I accomplish this. 
 
 
-export default function Movie({info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle}){
+export default function Movie({info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle, star, newRating }){
  const[review, setReview]=useState([])
  //I place the review state down here because I don't want people to initially leave a review on the first for, 
  const Navigate=useNavigate()
 
  const{id} = useParams()
 
-const addReview=(e)=>{//I pass this function down to my comment component and set the state to whatever the value is within the text area Stored locally.  Can I use an API here. 
-    // e.preventDefault()
-   let reviewText=document.getElementById('review')
-   setReview(review=>[...review,reviewText.value])
-   updateMovie(info.id)
-   console.log(review)
-}
+
 
 const reviewRender=review.map((review,index)=>{
 return(<div key={review+index}>{review}</div>)
@@ -42,20 +39,19 @@ const updateMovie=(id,e)=>{
   }).then(()=>{getFilmData()})
 }
 
-console.log(review)
+
 
 const action=()=>{
 
-  return(<div><Test/></div>)
+ Navigate('/test')
   
 }
 
 
   //I take the props from the movie form component and using React bootstrap make it into a card. 
-  return(<div>
-        <Card style={{width:'18rem', padding:'5px'}}>
+  return(<Card style={{width:'18rem', padding:'5px'}}>
           <Button variant='danger' onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
-            <Card.Img  onClick={()=>setToggle(true)} variant="top" src={info.image}/>
+            <Card.Img  onClick={action} variant="top" src={info.image}/>
               <Card.Body>
                 <Card.Title> Title: {info.title}</Card.Title> 
                   <Card.Text>
@@ -66,14 +62,14 @@ const action=()=>{
                     Summary: {info.plot}
                     <br/>
                     Rating:  {info.rating}
+                    <br/>
                   </Card.Text>
+                  Stars: <ReactStars count={5} value={info.rating} edit={false}/>
                     <Comment1 updateMovie={updateMovie} 
                               info={info} 
-                              addReview={addReview} 
                               review={review} 
                               setReview={setReview}/>
                               {reviewRender}
                 </Card.Body>
-          </Card>
-    </div>)
+          </Card>)
 }

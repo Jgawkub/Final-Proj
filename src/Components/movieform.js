@@ -8,8 +8,8 @@ import axios from "axios";
 import Movie from "./movie";
 import Stack from 'react-bootstrap/Stack';
 import ReactStars from "react-rating-stars-component";
-
 import Test from "./test";
+
 //To Do still:
 //1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? Did this. How to make this into something that I can do on click.
 //2.  If time, create a way to push films to add selected films to like a to a too watch list. 
@@ -27,7 +27,7 @@ export default function MovieForm({test,}){
     const[plot,setPlot]=useState('')
     const[search,setSearch]=useState('')
     const[toggle, setToggle]=useState(false)
-    const[star,setStars]=useState(0)
+    const[star,setStar]=useState(0)
     console.log(search)
     useEffect(()=>{
         axios.get(filmEndpoint).then((response)=>{
@@ -38,7 +38,7 @@ export default function MovieForm({test,}){
 
     const ratingChanged = (newRating) => {
         console.log(newRating)
-        setStars(newRating);
+        setStar(newRating);
       };
     const getFilmData=()=>{
         axios.get(filmEndpoint).then((getFilmData)=>{
@@ -74,27 +74,37 @@ export default function MovieForm({test,}){
       
        
     }
- const secondRender = filmData.map((movie,index)=>{
-    console.log({index})
+ 
+ //this second render is something I was playing around with to get the info to a page that would diplay the information of just one movie.
+   
+ 
+    const individual = filmData.map((movie,index)=>{
+        console.log({index})
 // return(<div key={index}><div>{movie.title}</div></div>)
-    return(<div key={movie+index}>
-        <Test m={movie}
-        filmData={filmData}
-        getFilmData={getFilmData}
-        setFilmData={setFilmData}
-        deleteMovie={deletMovie}
-        toggle={toggle}
-        setToggle={setToggle}
-        
-     
-        /></div>)    
-    })
+        return(<div key={movie+index}>
+            <Test info={movie}
+            filmData={filmData}
+            getFilmData={getFilmData}
+            setFilmData={setFilmData}
+            deleteMovie={deletMovie}
+            toggle={toggle}
+            setToggle={setToggle}
+            star={star}
+            setStar={setStar}
+         
+            /></div>)    
+        })
 
+    // if(search === "" && movie.title.includes(search)){
+    //     return search
+    // }else if(search === "" &&movie.director.includes(search)){
+    //     return search
+    // }
     
 // I'v implemented a .filter method here to sort through all of the I map over my movie API and then pass the information down to my movie component as well as functions needed to do API calls. 
     const renderMovie=filmData.filter((movie)=>{
-        return search==''? movie:movie.title.includes(search)
-            }).map((movie,index)=>{
+        return search===''? movie:movie.title.includes(search)
+        }).map((movie,index)=>{
                 console.log({index})
         // return(<div key={index}><div>{movie.title}</div></div>)
                 return(<div key={movie+index}>
@@ -105,11 +115,13 @@ export default function MovieForm({test,}){
                     deleteMovie={deletMovie}
                     toggle={toggle}
                     setToggle={setToggle}
+                    star={star}
+                    setStar={setStar}
                  
                     /></div>)    
                 })
 
-    return(<div>
+    return(<>
         <Form onSubmit={postMovie}>
             <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
             <Form.Control type='text' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
@@ -127,7 +139,7 @@ export default function MovieForm({test,}){
         </Stack>
         </Row>
         
-</div>
+</>
 
         
     )
