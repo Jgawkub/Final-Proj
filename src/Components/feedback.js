@@ -42,21 +42,20 @@ const deleteFeedback=(id)=>{
 
 const comments=feedbackData.map((f,index)=>{
     return(<div key={f+index}>
-        <FeedbackRender info={f}
+        <br/> <FeedbackRender info={f}
         fullName={fullName}
         setFullName={setFullName}
         comment={comment}
         setComment={setComment}
-
         feedbackData={feedbackData}
         getFeedbackData={getFeedbackData}
         deleteFeedback={deleteFeedback}/></div>)
 })
 
-    return(<div>LIKE WHAT YOU SEE PLEASE LEAVE A THOUGHT BELOW! 
+    return(<div>Thank you for visiting my page and checking out my final project. Please leave any feedback, or other thoughts, below!
         <Form onSubmit={postFeedback}>
             <Form.Control type='text' id='fullName' placeholder="Name" onChange={(e)=>setFullName(e.target.value)}></Form.Control>
-            <Form.Control type='text' id="comment" placeholder="comment" onChange={(e)=>setComment(e.target.value)}></Form.Control>
+            <Form.Control as='textarea' id="comment" placeholder="comment" onChange={(e)=>setComment(e.target.value)}></Form.Control>
             <Button variant="primary" type='submit'>Submit</Button>
         </Form>
         {comments}

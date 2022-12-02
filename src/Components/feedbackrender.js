@@ -1,6 +1,9 @@
 import React,{useState} from "react";
 import axios from "axios";
-import Button from 'react-bootstrap/Button'
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
@@ -19,9 +22,14 @@ const updateFeedback=(id,e)=>{
 }
 
     return(<div>
-       
-        {info.fullName}
+      <Row>
+        <Col></Col>
+        <Col>
+       <Card>
+        {info.fullName}:
+        <br/>
         {info.comment}
+        <br/>
   
        <ButtonGroup>
         <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
@@ -29,13 +37,16 @@ const updateFeedback=(id,e)=>{
        </ButtonGroup>
       
         {editBox === true ? <div>
-        <input type="text"placeholder="Name" onChange={(e)=>setFullName(e.target.value)}></input>
-        <input type='textarea' placeholder="Updated Comment" onChange={(e)=>setComment(e.target.value)}></input>
+        <input type="text"placeholder="Name" className="w-auto" onChange={(e)=>setFullName(e.target.value)}></input>
+        <br></br><textarea className="w-auto" placeholder="Updated Comment" onChange={(e)=>setComment(e.target.value)}></textarea>
+        <br/>
         <Button type="submit" onClick={()=>{updateFeedback(info.id);setEditBox(false)}}>Submit</Button>
         </div>:null}
        
-  
-     
+        </Card>
+        </Col>
+        <Col></Col>
+        </Row>
     </div>)
 
 

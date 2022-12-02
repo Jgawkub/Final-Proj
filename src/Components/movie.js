@@ -24,7 +24,7 @@ export default function Movie({info, getFilmData, filmData, setFilmData, deleteM
 
 
 const reviewRender=review.map((review,index)=>{
-return(<div key={review+index}>{review}</div>)
+return(<div key={review+index}><br/>{review}<br/></div>)
 
 }
     
@@ -43,7 +43,7 @@ const updateMovie=(id,e)=>{
 
 const action=()=>{
 
- Navigate('/test')
+ setToggle(true)
   
 }
 
@@ -59,17 +59,16 @@ const action=()=>{
                     <br/>
                     Director: {info.director}
                     <br/>
-                    Summary: {info.plot}
-                    <br/>
-                    Rating:  {info.rating}
-                    <br/>
+                    Summary:{info.plot}
                   </Card.Text>
                   Stars: <ReactStars count={5} value={info.rating} edit={false}/>
                     <Comment1 updateMovie={updateMovie} 
                               info={info} 
                               review={review} 
                               setReview={setReview}/>
-                              {reviewRender}
-                </Card.Body>
+                  <br></br>
+                  {reviewRender}
+      
+                  </Card.Body>
           </Card>)
 }

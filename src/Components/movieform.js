@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -9,6 +11,7 @@ import Movie from "./movie";
 import Stack from 'react-bootstrap/Stack';
 import ReactStars from "react-rating-stars-component";
 import Test from "./test";
+import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 
 //To Do still:
 //1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? Did this. How to make this into something that I can do on click.
@@ -122,20 +125,42 @@ export default function MovieForm({test,}){
                 })
 
     return(<>
-        <Form onSubmit={postMovie}>
+     Below are some of my favorite movies. Add your thoughts or even add your own movie with the form below!
+     <br/>
+     <Row>
+     <Col></Col>
+     <Col xs={8}>
+        <Dropdown>
+            <div className="d-grid gap-2">
+          <Dropdown.Toggle size='lg'>DropDown</Dropdown.Toggle>
+                    <Dropdown.Menu className="w-100">
+                    
+        <Form onSubmit={postMovie} style={{padding:'10px'}}>
             <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
             <Form.Control type='text' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
             <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
             <Form.Control type='text' ide='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
-            <ReactStars count={5} onChange={ratingChanged}/>
-            <Button variant="primary" type='submit' onClick={clearInput}>Submit</Button>
- 
+            <ReactStars count={5} size={24} onChange={ratingChanged}/>
+            <Dropdown.Item  as="button"><Button variant="primary" type='submit' onClick={clearInput}>Submit</Button></Dropdown.Item>
         </Form>
-        <Row >
+        </Dropdown.Menu>
+        
+        
+        
+      
+        </div>
+        </Dropdown>
+        </Col>
+        <Col></Col>
+        </Row>
+       
+        <Row>
         <Stack direction="horizontal" gap={3} className="d-flex flex-wrap justify-content-center">
-           {renderMovie}
+        
+        {renderMovie}
+          
         </Stack>
         </Row>
         

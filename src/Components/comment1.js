@@ -19,7 +19,7 @@ const renderComment=()=>{
 }
 
 
-    return(<div><Button variant="primary" onClick={renderComment}>Submit your own Review</Button>
+    return(<div><Button variant="primary" onClick={renderComment}>Leave your own thoughts below!</Button>
     {commentBox===true ? <div>
         <Form.Control as='textarea' placeholder="Leave Review Here" id={`review + ${info.id}`}/>
         <Button variant='primary' onClick={()=>{updateMovie(info.id); setCommentBox(false)}}>Submit</Button>
