@@ -3,17 +3,20 @@ import React, {useState} from "react";
 import Card from"react-bootstrap/Card"
 import Comment1 from "./comment1";
 import axios from "axios";
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { Link, Route, Routes, useNavigate, useParams  } from 'react-router-dom'
 import Test from "./test";
+import TestMovie from "./testmovie";
 
 // To Do:
 // Be able to delete a review? How could I accomplish this. 
 
 
-export default function Movie({info, getFilmData, filmData, setFilmData, deleteMovie}){
+export default function Movie({info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle}){
  const[review, setReview]=useState([])
  //I place the review state down here because I don't want people to initially leave a review on the first for, 
  const Navigate=useNavigate()
+
+ const{id} = useParams()
 
 const addReview=(e)=>{//I pass this function down to my comment component and set the state to whatever the value is within the text area Stored locally.  Can I use an API here. 
     // e.preventDefault()
@@ -43,23 +46,26 @@ console.log(review)
 
 const action=()=>{
 
+  return(<div><Test/></div>)
   
 }
 
 
   //I take the props from the movie form component and using React bootstrap make it into a card. 
   return(<div>
-        <Card onClick={()=>Navigate('/test')} style={{width:'18rem', padding:'5px'}}>
+        <Card style={{width:'18rem', padding:'5px'}}>
           <Button variant='danger' onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
-            <Card.Img  variant="top" src={info.image}/>
+            <Card.Img  onClick={()=>setToggle(true)} variant="top" src={info.image}/>
               <Card.Body>
-                <Card.Title>Title:{info.title}</Card.Title> 
+                <Card.Title> Title: {info.title}</Card.Title> 
                   <Card.Text>
-                    Date:{info.date}
+                    Date: {info.date}
                     <br/>
-                    Director:{info.director}
+                    Director: {info.director}
                     <br/>
-                    Summary:{info.plot}
+                    Summary: {info.plot}
+                    <br/>
+                    Rating:  {info.rating}
                   </Card.Text>
                     <Comment1 updateMovie={updateMovie} 
                               info={info} 

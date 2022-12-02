@@ -5,8 +5,10 @@ import Feedback from './Components/feedback';
 import Home from './Components/home';
 import Test from './Components/test'; //delete this after test. 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Container from 'react-bootstrap/Container'
-import { Routes, Link, Route } from "react-router-dom"
+import Container from 'react-bootstrap/Container';
+import { Routes, Link, Route } from "react-router-dom";
+import Movie from './Components/movie';
+import TestMovie from './Components/testmovie';
 function App() {
   return ( 
     <Container>
@@ -19,9 +21,11 @@ function App() {
     </nav>
 <Routes> 
     <Route path='/' element={<Home />}/>
-    <Route path='/movies' element={<MovieForm />}/>
+  
     <Route path='/feedback' element={<Feedback />}/>
-    <Route path='/Test' element={<Test />}/>
+    <Route path='/test' element={<Test />}/>
+    <Route path='/movies/' element={<MovieForm />}/>
+    <Route path='/movies/:id' elemment={<TestMovie />}/>
 </Routes>
   </Container> )
 }
