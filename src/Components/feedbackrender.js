@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
@@ -32,9 +33,9 @@ const updateFeedback=(id,e)=>{
           <Modal.Title>Edit your comment here! </Modal.Title>
         </Modal.Header>
             <Modal.Body> 
-                <input type="text"placeholder="Name" className="w-auto" onChange={(e)=>setFullName(e.target.value)}></input>
+               <Form.Control type="text"placeholder="Name" className="w-auto" onChange={(e)=>setFullName(e.target.value)} ></Form.Control> 
                 <br/>
-                <textarea className="w-auto" placeholder="Updated Comment" onChange={(e)=>setComment(e.target.value)}></textarea>
+                <textarea className="w-100" placeholder="Updated Comment" onChange={(e)=>setComment(e.target.value)}></textarea>
                 <br/>
             </Modal.Body>
                 <Modal.Footer>
@@ -52,25 +53,16 @@ const updateFeedback=(id,e)=>{
       <Row>
         <Col></Col>
         <Col>
-       <Card>
-        {info.fullName}:
-        <br/>
-        {info.comment}
-        <br/>
-  
-       <ButtonGroup>
-        <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
-        <Button variant="success" onClick={handleShow}>Edit</Button>
-       
-       </ButtonGroup>
-      
-        {editBox === true ? <div>
-
-
-
-       
-        </div>:null}
-        </Card>
+            <Card>
+                {info.fullName}:
+                <br/>
+                {info.comment}
+                <br/>
+                    <ButtonGroup>
+                        <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
+                        <Button variant="success" onClick={handleShow}>Edit</Button>
+                    </ButtonGroup>
+                </Card>
         </Col>
         <Col></Col>
         </Row>
