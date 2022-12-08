@@ -23,11 +23,24 @@ export default function Movie({info, getFilmData, displayOne, filmData, setFilmD
  const [show, setShow] = useState(false)
  const handleClose = () => setShow(false);
  const handleShow = () => setShow(true);
+ const filmEndpoint="https://6352caffd0bca53a8eb55114.mockapi.io/films"
+ const [ntitle, setNTitle]=useState('')
+ const [ndate, setNDate]=useState('')
+ const [ndirector, setNDirector]=useState('')
+ const [nimage, setNImage]=useState('')
+ const [nplot, setNPlot]=useState('')
+ const [nreview,setNReview]=useState('')
 
-
-//Figure out how to preload the state of each movie. 
-
-
+useEffect(()=>{
+  axios.get(filmEndpoint).then((response)=>{
+    console.log(response.data.length)
+    for(let i=0;i<response.data.length;i++){
+      console.log(response.data[i])
+    }
+  
+     
+  });
+},[]);
 
 
 //A little messy to get the value of the text area by using the id, would ideally want it to take the target.value problem I am having is that it is updating the state render in real time, and I only want to do it after im done with a comment. 
@@ -40,16 +53,16 @@ const updateMovie=(id,e)=>{
   }).then(()=>{getFilmData()})
 }
 
-//This update is if I would like to edit the details, lets say I got the name of the movie wrong but don't want to have to retype a bunch of stuff. 
+//This update is if I would like to edit the details, lets say I got the name of the movie wrong but don't want to have to retype a bunch of stuff. Works except on re-render. I set the values to whatever the new information is. 
  const updateMovie1=(id,e)=>{
   
   axios.put(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`,{  
-    title: title,
-    date: date,
-    director: director,
-    image: image,
-    plot: plot,
-    review: review
+    title: ntitle,
+    date: ndate,
+    director: ndirector,
+    image: nimage,
+    plot: nplot,
+    review: nreview
   
   }).then(()=>{getFilmData()})  
  }
@@ -65,12 +78,12 @@ const updateMovie=(id,e)=>{
       <Modal.Title>Edit your Movie Details Here.</Modal.Title>
     </Modal.Header>
         <Modal.Body> 
-            <Form.Control type='text' id="title11" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id="date1" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id='director1' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id='url1'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='plot1' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='review1' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id="title11" placeholder="Title" onChange={(e)=>{setNTitle(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id="date1" placeholder="Date" onChange={(e)=>{setNDate(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id='director1' placeholder="Director" onChange={(e)=>{setNDirector(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id='url1'placeholder="Image URL" onChange={(e)=>{setNImage(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='plot1' rows={3} placeholder="Plot"onChange={(e)=>{setNPlot(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='review1' rows={3} placeholder="Review"onChange={(e)=>{setNReview(e.target.value)}}></Form.Control>
         </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup>
@@ -86,7 +99,7 @@ const updateMovie=(id,e)=>{
           <ButtonGroup>
             <Button variant='danger' className="w-50" onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
             <Button variant='primary' className="w-50" onClick={handleShow}>Edit </Button></ButtonGroup>
-            <Card.Img  onClick={()=>displayOne(info, info.id)} variant="top" src={info.image}/>
+            <Card.Img variant="top" src={info.image}/>
               <Card.Body>
               <Link to={`/movies/${info.id}`}><Card.Title> Title: {info.title}</Card.Title></Link> 
                   <Card.Text>
@@ -94,16 +107,10 @@ const updateMovie=(id,e)=>{
                     <br/>
                     Director: {info.director}
                     <br/>
-                    Summary:{info.plot}
                   </Card.Text>
                   Stars: <ReactStars count={5} value={info.rating} edit={false}/>
-                    <Comment1 updateMovie={updateMovie} 
-                              info={info} 
-                              review={review} 
-                              setReview={setReview}/>
-                  <br></br>
-                 
-      
+                    {/* <Comment1 updateMovie={updateMovie} 
+                              info={info} /> */}
                   </Card.Body>
           </Card></div>)
 }

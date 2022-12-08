@@ -38,13 +38,13 @@ export default function MovieForm({test,filmData,setFilmData}){
         axios.get(filmEndpoint).then((response)=>{
             setFilmData(response.data);
             console.log(response.data)
-            setTitle(response.data.title)
-            console.log(response.data.title)
-            setDate(response.data.date)
-            setDirector(response.data.director)
-            setImage(response.data.image)
-            setPlot(response.data.plot)
-            setReview(response.data.review)
+            // setTitle(response.title)
+            // console.log(response.title)
+            // setDate(response.date)
+            // setDirector(response.director)
+            // setImage(response.image)
+            // setPlot(response.plot)
+            // setReview(response.review)
         });
     },[]);
 
@@ -76,7 +76,7 @@ export default function MovieForm({test,filmData,setFilmData}){
 
     }
     const deletMovie=(id)=>{
-        console.log("deleting"+ title)
+        console.log("deleting"+ id)
         axios.delete(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`).then(()=>{getFilmData()})
     }
     // I use this to just clear the inputs in my post. 
