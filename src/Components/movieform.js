@@ -30,6 +30,7 @@ export default function MovieForm({test,filmData,setFilmData}){
     const[plot,setPlot]=useState('')
     const[search,setSearch]=useState('')
     const[star,setStar]=useState(null)
+    const[review,setReview]=useState('')
 
 
 
@@ -37,6 +38,13 @@ export default function MovieForm({test,filmData,setFilmData}){
         axios.get(filmEndpoint).then((response)=>{
             setFilmData(response.data);
             console.log(response.data)
+            setTitle(response.data.title)
+            console.log(response.data.title)
+            setDate(response.data.date)
+            setDirector(response.data.director)
+            setImage(response.data.image)
+            setPlot(response.data.plot)
+            setReview(response.data.review)
         });
     },[]);
 
@@ -45,7 +53,7 @@ export default function MovieForm({test,filmData,setFilmData}){
         setStar(newRating);
       };
 
-      const getFilmData=()=>{
+ const getFilmData=()=>{
         axios.get(filmEndpoint).then((getFilmData)=>{
             setFilmData(getFilmData.data)
         })
@@ -60,9 +68,10 @@ export default function MovieForm({test,filmData,setFilmData}){
             image, 
             plot,
             rating: star,
-            review: null
+            review
         }).then(()=>{getFilmData()});
         console.log(title+director)
+        clearInput()
       
 
     }
@@ -70,14 +79,14 @@ export default function MovieForm({test,filmData,setFilmData}){
         console.log("deleting"+ title)
         axios.delete(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`).then(()=>{getFilmData()})
     }
-    //I use this to just clear the inputs in 
-    // const clearInput=()=>{
-    //     document.getElementById('title').value=('')
-    //     document.getElementById('date').value=('')
-    //     document.getElementById('director').value=('')
-    //     document.getElementById('url').value=('')  
-    //     document.getElementById('plot').value=('')
-    // }
+    // I use this to just clear the inputs in my post. 
+    const clearInput=()=>{
+        document.getElementById('title').value=('')
+        document.getElementById('date').value=('')
+        document.getElementById('director').value=('')
+        document.getElementById('url').value=('')  
+        document.getElementById('plot').value=('')
+    }
 
 
 
@@ -86,13 +95,6 @@ export default function MovieForm({test,filmData,setFilmData}){
 // console.log(()=>displayOne)
 
 
-const displayOne=(movie,id)=>{
-    if(movie.id === id){
-      return(<div>HI</div>)
-      
-    }else{console.log('False')}
-  }
-
 
     
 // I'v implemented a .filter method here to sort through all of the I map over my movie API and then pass the information down to my movie component as well as functions needed to do API calls. I am passing an ungodly amount of stuff down here to my Movie object. 
@@ -100,7 +102,7 @@ const displayOne=(movie,id)=>{
         return search ===''? movie:movie.title.includes(search)
         }).map((movie,index)=>{
         // return(<div key={index}><div>{movie.title}</div></div>)
-                return(<div key={movie+index}>
+                return(<div key={index}>
                     <Movie info={movie}
                     filmData={filmData}
                     getFilmData={getFilmData}
@@ -142,7 +144,9 @@ const displayOne=(movie,id)=>{
             <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
             <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
-            <Form.Control type='texty' ide='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='review' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
+
+        
             <ReactStars count={5} size={24} onChange={ratingChanged}/>
             <Dropdown.Item  as="button"><Button variant="primary" type='submit' >Submit</Button></Dropdown.Item>
         </Form>
@@ -156,7 +160,7 @@ const displayOne=(movie,id)=>{
         </Col>
         <Col></Col>
         </Row>
-       
+        <Form.Control type='text' ide='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
         <Row>
         <Stack direction="horizontal" gap={3} className="d-flex flex-wrap justify-content-center">
         

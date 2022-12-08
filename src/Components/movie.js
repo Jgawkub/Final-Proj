@@ -24,9 +24,7 @@ export default function Movie({info, getFilmData, displayOne, filmData, setFilmD
  const handleClose = () => setShow(false);
  const handleShow = () => setShow(true);
 
- useEffect(()=>{
-  console.log("Hi")
- })
+
 //Figure out how to preload the state of each movie. 
 
 
@@ -51,13 +49,12 @@ const updateMovie=(id,e)=>{
     director: director,
     image: image,
     plot: plot,
+    review: review
   
   }).then(()=>{getFilmData()})  
  }
 
-const reviewRender=review.map((review,index)=>{
-  return(<div key={review+index}><br/>{review}<br/></div>)
-  })
+
 
 
 
@@ -65,14 +62,15 @@ const reviewRender=review.map((review,index)=>{
     
     <Modal centered show={show} onHide={handleClose}>
     <Modal.Header closeButton>
-      <Modal.Title>Edit your Movie Details Here.  </Modal.Title>
+      <Modal.Title>Edit your Movie Details Here.</Modal.Title>
     </Modal.Header>
         <Modal.Body> 
-            <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id="title11" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id="date1" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id='director1' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
+            <Form.Control type='text' id='url1'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='plot1' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='review1' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
         </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup>
@@ -104,7 +102,6 @@ const reviewRender=review.map((review,index)=>{
                               review={review} 
                               setReview={setReview}/>
                   <br></br>
-                  {reviewRender}
                  
       
                   </Card.Body>
