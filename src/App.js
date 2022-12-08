@@ -15,7 +15,7 @@ function App() {
     const[filmData,setFilmData]=useState([])
  
     return ( 
-    <Container>
+    <Container id="page">
       <Navigation/>
 
     <Routes> 

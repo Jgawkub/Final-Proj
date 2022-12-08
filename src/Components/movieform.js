@@ -136,38 +136,32 @@ export default function MovieForm({test,filmData,setFilmData}){
         <Dropdown>
             <div className="d-grid gap-2">
           <Dropdown.Toggle size='lg'>DropDown</Dropdown.Toggle>
-                    <Dropdown.Menu className="w-100">
-                    
-        <Form onSubmit={postMovie} style={{padding:'10px'}}>
-            <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
-            <Form.Control type='number' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
-            <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='review' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
-
-        
-            <ReactStars count={5} size={24} onChange={ratingChanged}/>
-            <Dropdown.Item  as="button"><Button variant="primary" type='submit' >Submit</Button></Dropdown.Item>
-        </Form>
-        </Dropdown.Menu>
-        
-        
-        
-      
+            <Dropdown.Menu className="w-100">
+                <Form onSubmit={postMovie} style={{padding:'10px'}}>
+                    <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
+                    <Form.Control type='number' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
+                    <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
+                    <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
+                    <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
+                    <Form.Control as='textarea' id='review' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
+                    <ReactStars count={5} size={24} onChange={ratingChanged}/>
+                    <Dropdown.Item  as="button"><Button id="submit" variant="primary" type='submit' >Submit</Button></Dropdown.Item>
+                </Form>
+            </Dropdown.Menu>
         </div>
         </Dropdown>
-        </Col>
-        <Col></Col>
-        </Row>
-        <Form.Control type='text' ide='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
-        <Row>
+    </Col>
+    <Col></Col>
+    </Row>
+        <div className="d-flex justify-content-center">
+            <Form.Control className=" w-50" type='text' id='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
+        </div>
+        <br/>
+    <Row>
         <Stack direction="horizontal" gap={3} className="d-flex flex-wrap justify-content-center">
-        
-        {renderMovie}
-   
+            {renderMovie}
         </Stack>
-        </Row>
+    </Row>
         
 </>
 

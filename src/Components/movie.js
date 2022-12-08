@@ -35,7 +35,7 @@ useEffect(()=>{
   axios.get(filmEndpoint).then((response)=>{
     console.log(response.data.length)
     for(let i=0;i<response.data.length;i++){
-      console.log(response.data[i])
+      console.log(response.data[i].title)
     }
   
      

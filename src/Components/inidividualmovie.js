@@ -17,13 +17,13 @@ export default function IndividualMovie({ info, getFilmData, filmData, setFilmDa
 
     const {id}=useParams()
 console.log(filmData)
-    return(<Container className="d-flex justify-content-center" >
+    return(<Container className="d-flex align-content-center justify-content-center " >
         
     
         
         {filmData.filter(movie=>movie.id===id).map((movie,index)=>{
             return(<div key={index}>
-            <Card style={{width:'50rem', padding:'5px'}}>
+            <Card style={{width:'50rem', padding:'5px'}} >
                
             <Card.Body>
                 <Row>

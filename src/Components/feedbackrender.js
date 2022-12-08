@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import axios from "axios";
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col'
@@ -9,21 +9,31 @@ import Form from 'react-bootstrap/Form'
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
-export default function FeedbackRender({props, info, fullName, comment, setComment, setFullName, feedbackData, getFeedbackData, deleteFeedback }){
+export default function FeedbackRender({props, info, fullName, comment, setComment, setFullName, feedbackData, getFeedbackData, deleteFeedback,setFeedbackData }){
     const [editBox,setEditBox]=useState(false)
     const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [nfullName, setNFullName]=useState('');
+    const [ncomment, setNComment]=useState('');
 
-//Have my update function in iys component, this may not have been needed and I could it passed down as props, but I feel I am already passing down so many things to it thats  things as props. 
+
+//Have my update function in iys component, this may not have been needed and I could it passed down as props, but I feel I am already passing down so many things to it thats  things as props.Setting the value of the name and comment to the new name and comment
 const updateFeedback=(id,e)=>{
     console.log(`updating + ${id}`)
     axios.put(feedbackEndpoint+`/${id}`,{
-        fullName,
-        comment
+        fullName: nfullName,
+        comment: ncomment
     }).then(()=>{getFeedbackData()})
 }
+
+useEffect(()=>{
+    axios.get(feedbackEndpoint).then((response)=>{
+        setFeedbackData(response.data);
+        console.log(response.data)
+    });
+},[]);
 
     return(<div>
   
@@ -33,9 +43,9 @@ const updateFeedback=(id,e)=>{
           <Modal.Title>Edit your comment here! </Modal.Title>
         </Modal.Header>
             <Modal.Body> 
-               <Form.Control type="text"placeholder="Name" className="w-auto" onChange={(e)=>setFullName(e.target.value)} ></Form.Control> 
+               <Form.Control type="text"placeholder="Name" className="w-auto" onChange={(e)=>setNFullName(e.target.value)} ></Form.Control> 
                 <br/>
-                <textarea className="w-100" placeholder="Updated Comment" onChange={(e)=>setComment(e.target.value)}></textarea>
+                <textarea className="w-100" placeholder="Updated Comment" onChange={(e)=>setNComment(e.target.value)}></textarea>
                 <br/>
             </Modal.Body>
                 <Modal.Footer>
@@ -46,9 +56,6 @@ const updateFeedback=(id,e)=>{
                         
                 </Modal.Footer>
       </Modal>
-      
-      
-      
       
       <Row>
         <Col></Col>

@@ -11,6 +11,7 @@ const [feedbackData, setFeedbackData]=useState([])
 const [fullName, setFullName]=useState('')
 const [comment, setComment]=useState('')
 const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
+
 //Similar Situation I am using a bunch of API calls here as I could't quite figure out how to make all the API calls in another component and call them here. I understand as a result it is more wordy. 
 useEffect(()=>{
     axios.get(feedbackEndpoint).then((response)=>{
@@ -49,16 +50,20 @@ const comments=feedbackData.map((f,index)=>{
         comment={comment}
         setComment={setComment}
         feedbackData={feedbackData}
+        setFeedbackData={setFeedbackData}
         getFeedbackData={getFeedbackData}
         deleteFeedback={deleteFeedback}/></div>)
 })
 
     return(<div>Thank you for visiting my page and checking out my final project. Please leave any feedback, or other thoughts, below!
-        <Form onSubmit={postFeedback}>
+       <br/>
+       <div  className="d-flex justify-content-center">
+        <Form className='w-50' onSubmit={postFeedback}>
             <Form.Control type='text' id='fullName' placeholder="Name" onChange={(e)=>setFullName(e.target.value)}></Form.Control>
             <Form.Control as='textarea' id="comment" placeholder="comment" onChange={(e)=>setComment(e.target.value)}></Form.Control>
             <Button variant="primary" type='submit'>Submit</Button>
         </Form>
+        </div>
         {comments}
        
                 </div>)
