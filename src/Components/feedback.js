@@ -1,70 +1,90 @@
-import React,{useState,useEffect} from "react";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import React,{useState, useEffect} from "react";
 import axios from "axios";
-import FeedbackRender from "./feedbackrender";
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Card from 'react-bootstrap/Card'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Movie from "./movie";
+
+export default function Feedback({props, info, fullName, comment, setComment, setFullName, feedbackData, getFeedbackData, deleteFeedback,setFeedbackData }){
+    const [editBox,setEditBox]=useState(false)
+    const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
+    const [show, setShow] = useState(false)
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [nfullName, setNFullName]=useState('');
+    const [ncomment, setNComment]=useState('');
 
 
-//This component is intended to be in an about me page, where peeople can leavefeeback about what they've seen
-export default function Feedback(){
-const [feedbackData, setFeedbackData]=useState([])
-const [fullName, setFullName]=useState('')
-const [comment, setComment]=useState('')
-const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
+//Have my update function in iys component, this may not have been needed and I could it passed down as props, but I feel I am already passing down so many things to it thats  things as props.Setting the value of the name and comment to the new name and comment
 
-//Similar Situation I am using a bunch of API calls here as I could't quite figure out how to make all the API calls in another component and call them here. I understand as a result it is more wordy. 
+
 useEffect(()=>{
     axios.get(feedbackEndpoint).then((response)=>{
+    
         setFeedbackData(response.data);
         console.log(response.data)
-    });
+            setNFullName(response.data.fullName)
+            setNComment(response.data.comment)   
+        
+     });
 },[]);
 
-const getFeedbackData=()=>{
-    axios.get(feedbackEndpoint).then((getFeedbackData)=>{
-        setFeedbackData(getFeedbackData.data)
-    })
-}
 
-const postFeedback=(e)=>{
-    e.preventDefault()
-    axios.post(feedbackEndpoint,{
-        fullName,
-        comment
-    }).then(()=>{getFeedbackData()});
-    console.log(fullName)
+
+const updateFeedback=(id,e)=>{
+    console.log(`updating + ${id}`)
+    axios.put(feedbackEndpoint+`/${id}`,{
+        fullName: nfullName,
+        comment: ncomment
+    }).then(()=>{getFeedbackData()})
+   
 }
 
 
-const deleteFeedback=(id)=>{
-    console.log('deleting'+fullName)
-    axios.delete(feedbackEndpoint+`/${id}`).then(()=>{getFeedbackData()})
-}
-    
 
-const comments=feedbackData.map((f,index)=>{
-    return(<div key={f+index}>
-        <br/> <FeedbackRender info={f}
-        fullName={fullName}
-        setFullName={setFullName}
-        comment={comment}
-        setComment={setComment}
-        feedbackData={feedbackData}
-        setFeedbackData={setFeedbackData}
-        getFeedbackData={getFeedbackData}
-        deleteFeedback={deleteFeedback}/></div>)
-})
+    return(<div>
+  
+{/* I grabbed this Modal from the React Bootstrap so that when you edid a little pop up shows with your comments to change. Done for the little UI flair.   */}
+      <Modal centered show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Edit your comment here! </Modal.Title>
+        </Modal.Header>
+            <Modal.Body> 
+               <Form.Control type="text" placeholder="Name" className="w-auto" onChange={(e)=>setNFullName(e.target.value)} ></Form.Control> 
+                <br/>
+                <textarea className="w-100" placeholder="Updated Comment" onChange={(e)=>setNComment(e.target.value)}></textarea>
+                <br/>
+            </Modal.Body>
+                <Modal.Footer>
+                    <ButtonGroup>
+                        <Button variant="danger" onClick={handleClose}>Close</Button>
+                        <Button variant="primary" onClick={()=>{updateFeedback(info.id);handleClose()}}>Submit</Button>
+                    </ButtonGroup>
+                        
+                </Modal.Footer>
+      </Modal>
+      
+      <Row>
+        <Col></Col>
+        <Col>
+            <Card>
+                {info.fullName}-
+                <br/>
+                {info.comment}
+                <br/>
+                    <ButtonGroup>
+                        <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
+                        <Button variant="success" onClick={handleShow}>Edit</Button>
+                    </ButtonGroup>
+                </Card>
+        </Col>
+        <Col></Col>
+        </Row>
+    </div>)
 
-    return(<div>Thank you for visiting my page and checking out my final project. Please leave any feedback, or other thoughts, below!
-       <br/>
-       <div  className="d-flex justify-content-center">
-        <Form className='w-50' onSubmit={postFeedback}>
-            <Form.Control type='text' id='fullName' placeholder="Name" onChange={(e)=>setFullName(e.target.value)}></Form.Control>
-            <Form.Control as='textarea' id="comment" placeholder="comment" onChange={(e)=>setComment(e.target.value)}></Form.Control>
-            <Button variant="primary" type='submit'>Submit</Button>
-        </Form>
-        </div>
-        {comments}
-       
-                </div>)
+
 }

@@ -38,13 +38,6 @@ export default function MovieForm({test,filmData,setFilmData}){
         axios.get(filmEndpoint).then((response)=>{
             setFilmData(response.data);
             console.log(response.data)
-            // setTitle(response.title)
-            // console.log(response.title)
-            // setDate(response.date)
-            // setDirector(response.director)
-            // setImage(response.image)
-            // setPlot(response.plot)
-            // setReview(response.review)
         });
     },[]);
 

@@ -31,17 +31,22 @@ export default function Movie({info, getFilmData, displayOne, filmData, setFilmD
  const [nplot, setNPlot]=useState('')
  const [nreview,setNReview]=useState('')
 
-useEffect(()=>{
+
+//What I'm trying to do here is to set the state already fropm the API so that when I edit boxes I can edit one value at a time and not have everything else be erased. 
+ useEffect(()=>{
   axios.get(filmEndpoint).then((response)=>{
-    console.log(response.data.length)
-    for(let i=0;i<response.data.length;i++){
-      console.log(response.data[i].title)
-    }
-  
-     
+      setFilmData(response.data);
+      console.log(response.data)
+      setNTitle(response.data.title)
+      setNDate(response.data.date)
+      setNDirector(response.data.director)
+      setNDate(response.data.date)
+      setNImage(response.data.image)
+      setNPlot(response.data.plot)
+      setNReview(response.data.review)
+
   });
 },[]);
-
 
 //A little messy to get the value of the text area by using the id, would ideally want it to take the target.value problem I am having is that it is updating the state render in real time, and I only want to do it after im done with a comment. 
 const updateMovie=(id,e)=>{
@@ -95,7 +100,7 @@ const updateMovie=(id,e)=>{
     </Modal>
   
 
-  <Card style={{width:'18rem', padding:'5px'}}>
+  <Card className="moviecard" style={{width:'18rem', padding:'5px'}}>
           <ButtonGroup>
             <Button variant='danger' className="w-50" onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
             <Button variant='primary' className="w-50" onClick={handleShow}>Edit </Button></ButtonGroup>

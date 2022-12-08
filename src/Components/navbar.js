@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 export default function Navigation(){
     return(   <Navbar id='nav' className='nav'>
         <Container>
-        <Navbar.Brand>My Final Project</Navbar.Brand>
+        <Navbar.Brand>Jakub</Navbar.Brand>
         <Nav className=" n1 justify-content-end flex-grow-1 pe-3">
             
         
