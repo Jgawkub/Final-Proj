@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form"
 
 
 
-
+//Do I also just need a use Effect here too? 
 export default function Comment1({review, info, updateMovie, addReview, setReview, reviewList, setReviewList}){
 const [commentBox, setCommentBox]=useState(false)
 

@@ -32,27 +32,43 @@ export default function Movie({info, getFilmData, displayOne, filmData, setFilmD
  const [nreview,setNReview]=useState('')
 
 
-//What I'm trying to do here is to set the state already fropm the API so that when I edit boxes I can edit one value at a time and not have everything else be erased. 
- useEffect(()=>{
+//Old use Effect of trying to edit just pieces of information. 
+//  useEffect(()=>{
+//   axios.get(filmEndpoint).then((response)=>{
+//       setFilmData(response.data);
+//       console.log(response.data)
+//       setNTitle(response.data.title)
+//       setNDate(response.data.date)
+//       setNDirector(response.data.director)
+//       setNDate(response.data.date)
+//       setNImage(response.data.image)
+//       setNPlot(response.data.plot)
+//       setNReview(response.data.review)
+
+//   });
+// },[]);
+
+
+//With this useEffect I filter and then set the states for all the various pieces of data so that when I go into a form to edit just one piece of information the others don't go blank. 
+useEffect(()=>{
   axios.get(filmEndpoint).then((response)=>{
       setFilmData(response.data);
-      console.log(response.data)
-      setNTitle(response.data.title)
-      setNDate(response.data.date)
-      setNDirector(response.data.director)
-      setNDate(response.data.date)
-      setNImage(response.data.image)
-      setNPlot(response.data.plot)
-      setNReview(response.data.review)
-
-  });
+      filmData.filter(movie=>movie.id===info.id).map((film,index)=>{
+          setNTitle(film.title)
+          console.log(film.title)
+          setNDate(film.date)
+          setNDirector(film.director)
+          setNImage(film.image)
+          setNPlot(film.plot)
+          setNReview(film.review)
+      })
+         
+   });
 },[]);
 
 
-
-//This update is if I would like to edit the details, lets say I got the name of the movie wrong but don't want to have to retype a bunch of stuff. Works except on re-render. I set the values to whatever the new information is. 
+//This update is if I would like to edit the details, I set the state up in the movie list to whatever the state is in each individual movie is. 
  const updateMovie1=(id,e)=>{
-  
   axios.put(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`,{  
     title: ntitle,
     date: ndate,

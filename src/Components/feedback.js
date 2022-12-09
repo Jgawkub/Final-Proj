@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Movie from "./movie";
 
-export default function Feedback({props, info, fullName, comment, setComment, setFullName, feedbackData, getFeedbackData, deleteFeedback,setFeedbackData }){
+export default function Feedback({ info, fullName, comment, setComment, setFullName, feedbackData, getFeedbackData, deleteFeedback,setFeedbackData }){
     const [editBox,setEditBox]=useState(false)
     const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
     const [show, setShow] = useState(false)
@@ -22,17 +22,31 @@ export default function Feedback({props, info, fullName, comment, setComment, se
 //Have my update function in iys component, this may not have been needed and I could it passed down as props, but I feel I am already passing down so many things to it thats  things as props.Setting the value of the name and comment to the new name and comment
 
 
+// useEffect(()=>{
+//     axios.get(feedbackEndpoint).then((response)=>{
+    
+//         setFeedbackData(response.data);
+//         console.log(response.data)
+//             setNFullName(response.data.fullName)
+//             setNComment(response.data.comment)   
+        
+//      });
+// },[]);
+
+
 useEffect(()=>{
     axios.get(feedbackEndpoint).then((response)=>{
     
         setFeedbackData(response.data);
-        console.log(response.data)
-            setNFullName(response.data.fullName)
-            setNComment(response.data.comment)   
-        
+        feedbackData.filter(form=>form.id===info.id).map((form,index)=>{
+            setNFullName(form.fullName)
+            console.log(form.fullName)
+            setNComment(form.comment)
+            console.log(form.comment)
+        })
+           
      });
 },[]);
-
 
 
 const updateFeedback=(id,e)=>{
