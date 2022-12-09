@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import { Routes, Link, Route } from "react-router-dom";
 import Navigation from './Components/navbar';
-
+import Footer from './Components/footer';
 
 function App() {
     const[filmData,setFilmData]=useState([])
@@ -24,6 +24,8 @@ function App() {
         <Route path='/movieform/' element={<MovieForm filmData={filmData} setFilmData={setFilmData}/>}/>
         <Route path='/movies/:id' element={<IndividualMovie filmData={filmData} setFilmData={setFilmData}/>}/>
     </Routes>
+<br/>
+    <Footer/>
 </Container>
    )
 }

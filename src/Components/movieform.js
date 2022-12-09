@@ -94,7 +94,6 @@ export default function MovieForm({test,filmData,setFilmData}){
     const renderMovie=filmData.filter((movie)=>{
         return search.toLowerCase() ===''? movie:movie.title.toLowerCase().includes(search)
         }).map((movie,index)=>{
-        // return(<div key={index}><div>{movie.title}</div></div>)
                 return(<div key={index}>
                     <Movie info={movie}
                     filmData={filmData}
@@ -121,8 +120,7 @@ export default function MovieForm({test,filmData,setFilmData}){
 
     return(
     <>
-     Below are some of my favorite movies. Add your thoughts or even add your own movie with the form below!
-     <br/>
+     Below are some of my favorite movies. Why don't you add your own
      <Row>
      <Col></Col>
      <Col xs={8}>

@@ -2,7 +2,7 @@
 
 #page{
     background-color: #F1F7ED;
-    height:auto;
+    height:100%;
     
 }
 
@@ -18,7 +18,7 @@
 .fcard{
     transition: .5s;
     width: 35rem;
-    padding: 5px;
+    padding: 5px;;
 }
 
 .cardbody{
@@ -99,3 +99,17 @@
 #dropdown{
     background-color: #523249;
 }
+
+#box{
+    height:15vh;
+    background-color:yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.test{
+    background-color:#FE4A49;
+    color: #FE4A49;
+}
+
