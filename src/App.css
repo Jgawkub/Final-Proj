@@ -2,7 +2,10 @@
 
 #page{
     background-color: #F1F7ED;
-    height:100%;
+    min-height:100vh;
+    display: flex;
+    flex-direction: column;
+
     
 }
 
@@ -106,6 +109,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: auto;
 }
 
 .test{
