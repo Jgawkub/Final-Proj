@@ -25,7 +25,7 @@ export default function IndividualMovie({ info, getFilmData, filmData, setFilmDa
 
     const {id}=useParams()
 console.log(filmData)
-    return(<Container className="d-flex align-content-center justify-content-center " >
+    return(<Container className=" box d-flex align-items-center justify-content-center " >
         
     
         
