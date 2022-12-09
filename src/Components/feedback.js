@@ -68,19 +68,19 @@ const updateFeedback=(id,e)=>{
                 </Modal.Footer>
       </Modal>
       
-      <Row>
+      <Row className="feedbackrow">
         <Col></Col>
         <Col>
-            <Card>
-                {info.fullName}-
-                <br/>
-                {info.comment}
-                <br/>
-                    <ButtonGroup>
-                        <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
-                        <Button variant="success" onClick={handleShow}>Edit</Button>
-                    </ButtonGroup>
-                </Card>
+            <Card className="feedbackcard">
+                <Card.Body className="moviecardbody">
+                    <Card.Text className= 'd-flex justify-content-center'>{info.fullName}-
+                    <br/>{info.comment}</Card.Text>
+                        <ButtonGroup>
+                            <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
+                            <Button variant="success" onClick={handleShow}>Edit</Button>
+                        </ButtonGroup>
+                    </Card.Body>
+             </Card>
         </Col>
         <Col></Col>
         </Row>

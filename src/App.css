@@ -8,13 +8,24 @@
 }
 
 .moviecard{
-    transition: .5s
+    transition: .5s;
+    
+    width: 18rem;
+    padding: 5px;
+}
+
+.moviecardbody{
+    background-color:#50A2A7;
 }
 .moviecard:hover{
     top:-10px;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
+#nav{
+    background-color: #D58936;
+    border-radius: 5px;
+}
 
 .li{
    padding: 1rem;
@@ -22,3 +33,19 @@
     text-decoration: none;
   
 }
+
+.feedbackcard{
+    width: 30rem;
+    background-color:red;
+  
+}
+
+#profile{
+    border-radius: 50%;
+    height:300px;
+    padding: 5px
+}
+
+/* .h{
+    height: 100vh;
+} */

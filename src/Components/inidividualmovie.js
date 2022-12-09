@@ -46,7 +46,9 @@ console.log(filmData)
                     {movie.director}
                         <div className="border-bottom border-dark"></div>
                         <br/>
-                     {movie.plot}
+                    {movie.plot}
+                        <br/>
+                    {movie.review}
                     </Col>
                 </Row>
             </Card.Body>

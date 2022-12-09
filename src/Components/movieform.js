@@ -92,7 +92,7 @@ export default function MovieForm({test,filmData,setFilmData}){
     
 // I'v implemented a .filter method here to sort through all of the I map over my movie API and then pass the information down to my movie component as well as functions needed to do API calls. I am passing an ungodly amount of stuff down here to my Movie object. 
     const renderMovie=filmData.filter((movie)=>{
-        return search ===''? movie:movie.title.includes(search)
+        return search.toLowerCase() ===''? movie:movie.title.toLowerCase().includes(search)
         }).map((movie,index)=>{
         // return(<div key={index}><div>{movie.title}</div></div>)
                 return(<div key={index}>
@@ -146,8 +146,9 @@ export default function MovieForm({test,filmData,setFilmData}){
     </Col>
     <Col></Col>
     </Row>
+        <br/>
         <div className="d-flex justify-content-center">
-            <Form.Control className=" w-50" type='text' id='filter' placeholder="Filter by Title" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
+            <Form.Control className=" w-50" type='text' id='filter' placeholder="Filter by Title (lower case)" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
         </div>
         <br/>
     <Row>

@@ -1,5 +1,4 @@
-import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
+
 import React, {useState} from 'react'
 import './App.css';
 import MovieForm from './Components/movieform';
