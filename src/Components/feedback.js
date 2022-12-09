@@ -63,8 +63,8 @@ const updateFeedback=(id,e)=>{
             </Modal.Body>
                 <Modal.Footer>
                     <ButtonGroup>
-                        <Button variant="danger" className="close" onClick={handleClose}><i className="bi bi-x-square"></i></Button>
-                        <Button variant="primary" className="submit" onClick={()=>{updateFeedback(info.id);handleClose()}}><i className="bi bi-send"></i></Button>
+                        <Button id="close" variant="custom" className="close" onClick={handleClose}><i className="bi bi-x-square"></i></Button>
+                        <Button id="submit" variant="custom" className="submit" onClick={()=>{updateFeedback(info.id);handleClose()}}><i className="bi bi-send"></i></Button>
                     </ButtonGroup>
                         
                 </Modal.Footer>

@@ -128,7 +128,7 @@ export default function MovieForm({test,filmData,setFilmData}){
      <Col xs={8}>
         <Dropdown>
             <div className="d-grid gap-2">
-          <Dropdown.Toggle className="delete" size='lg'>DropDown</Dropdown.Toggle>
+          <Dropdown.Toggle id="dropdown" size='lg'>DropDown</Dropdown.Toggle>
             <Dropdown.Menu className="w-100">
                     <Form onSubmit={postMovie} style={{padding:'10px'}}>
                     <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>

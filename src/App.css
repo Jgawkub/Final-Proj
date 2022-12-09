@@ -2,7 +2,7 @@
 
 #page{
     background-color: #F1F7ED;
-    height:100vh;
+    height:auto;
     
 }
 
@@ -95,4 +95,7 @@
 
 #close{
     background-color: #FE4A49;;
+}
+#dropdown{
+    background-color: #523249;
 }
