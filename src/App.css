@@ -1,12 +1,14 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
-/* #submit{
-    background-color: yellow;
-} */
+
 #page{
     background-color: #F1F7ED;
-    height: 100vh;
+    height:100vh;
+    
 }
 
+#navtitle{
+    color:white
+}
 .card{
     transition: .5s;
     width: 18rem;
@@ -20,7 +22,8 @@
 }
 
 .cardbody{
-    background-color:#ACBDBA;
+    
+    background: linear-gradient(#CDDDDD,#ACBDBA);
     
 }
 
@@ -30,16 +33,18 @@
 }
 
 #nav{
-    background-color: #F24236;
+    background-color: #114B5F;
     border-radius: 5px;
     height:100px;
+    margin: 0;
+    width:auto
 }
 
 .li{
    padding: 1rem;
     font-size: 20px;
     text-decoration: none;
-    color: black;
+    color: white ;
   
 }
 
@@ -71,3 +76,23 @@
     text-decoration: none;
 }
 
+#delete{
+    background-color: #FE4A49;
+    width:50%
+}
+
+#edit{
+    background-color: #114B5F;
+    color:white;
+    width:50%
+    
+}
+
+#submit{
+    background-color:#114B5F; 
+    color:white
+}
+
+#close{
+    background-color: #FE4A49;;
+}

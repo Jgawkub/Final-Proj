@@ -19,19 +19,7 @@ export default function Feedback({ info, fullName, comment, setComment, setFullN
     const [ncomment, setNComment]=useState('');
 
 
-//Have my update function in iys component, this may not have been needed and I could it passed down as props, but I feel I am already passing down so many things to it thats  things as props.Setting the value of the name and comment to the new name and comment
 
-
-// useEffect(()=>{
-//     axios.get(feedbackEndpoint).then((response)=>{
-    
-//         setFeedbackData(response.data);
-//         console.log(response.data)
-//             setNFullName(response.data.fullName)
-//             setNComment(response.data.comment)   
-        
-//      });
-// },[]);
 
 
 useEffect(()=>{
@@ -75,8 +63,8 @@ const updateFeedback=(id,e)=>{
             </Modal.Body>
                 <Modal.Footer>
                     <ButtonGroup>
-                        <Button variant="danger" className="close" onClick={handleClose}><i class="bi bi-x-square"></i></Button>
-                        <Button variant="primary" className="submit" onClick={()=>{updateFeedback(info.id);handleClose()}}><i class="bi bi-send"></i></Button>
+                        <Button variant="danger" className="close" onClick={handleClose}><i className="bi bi-x-square"></i></Button>
+                        <Button variant="primary" className="submit" onClick={()=>{updateFeedback(info.id);handleClose()}}><i className="bi bi-send"></i></Button>
                     </ButtonGroup>
                         
                 </Modal.Footer>
@@ -90,8 +78,8 @@ const updateFeedback=(id,e)=>{
                     <Card.Text className= 'd-flex justify-content-left'>{info.fullName}-
                     <br/>{info.comment}</Card.Text>
                         <ButtonGroup className="d-flex justify-content-center">
-                            <Button variant="danger" className="delete" onClick={()=>deleteFeedback(info.id)}><i class="bi bi-trash3"></i></Button>
-                            <Button variant="success" className="edit" onClick={handleShow}><i class="bi bi-pencil"></i></Button>
+                            <Button variant="custom" id="delete"  className="delete" onClick={()=>deleteFeedback(info.id)}><i className="bi bi-trash3"></i></Button>
+                            <Button variant="custom" id="edit" className="edit" onClick={handleShow}><i className="bi bi-pencil"></i></Button>
                         </ButtonGroup>
                     </Card.Body>
              </Card>

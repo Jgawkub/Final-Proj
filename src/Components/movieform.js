@@ -128,7 +128,7 @@ export default function MovieForm({test,filmData,setFilmData}){
      <Col xs={8}>
         <Dropdown>
             <div className="d-grid gap-2">
-          <Dropdown.Toggle size='lg'>DropDown</Dropdown.Toggle>
+          <Dropdown.Toggle className="delete" size='lg'>DropDown</Dropdown.Toggle>
             <Dropdown.Menu className="w-100">
                     <Form onSubmit={postMovie} style={{padding:'10px'}}>
                     <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
@@ -138,7 +138,7 @@ export default function MovieForm({test,filmData,setFilmData}){
                     <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
                     <Form.Control as='textarea' id='review' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
                     <ReactStars count={5} size={24} onChange={ratingChanged}/>
-                    <Dropdown.Item  as="button"><Button className="submit" variant="primary" type='submit' >Submit</Button></Dropdown.Item>
+                    <Dropdown.Item  as="button"><Button className="submit" variant="primary" type='submit'><i class="bi bi-send"></i></Button></Dropdown.Item>
                 </Form>
             </Dropdown.Menu>
         </div>

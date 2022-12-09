@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react'
-import './App.css';
+import styles from './App.css';
 import MovieForm from './Components/movieform';
 import FeedbackForm from './Components/feedbackform';
 import Home from './Components/home';
@@ -15,7 +15,7 @@ function App() {
     const[filmData,setFilmData]=useState([])
  
     return ( 
-    <Container id="page">
+    <Container className={styles} id="page">
       <Navigation/>
 
     <Routes> 

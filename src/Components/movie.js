@@ -99,8 +99,8 @@ useEffect(()=>{
         </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup>
-                    <Button variant="danger" className="close" onClick={handleClose}>Close</Button>
-                    <Button variant="primary" className="submit" onClick={()=>{updateMovie1(info.id); handleClose()}}>Submit</Button>
+                    <Button id="close" variant="custom" className="close" onClick={handleClose}><i className="bi bi-x-square"></i></Button>
+                    <Button id="submit" variant="custom" className="submit" onClick={()=>{updateMovie1(info.id); handleClose()}}><i className="bi bi-send"></i></Button>
                 </ButtonGroup>
                     
             </Modal.Footer>
@@ -108,9 +108,9 @@ useEffect(()=>{
   
 
   <Card className="card">
-          <ButtonGroup>
-            <Button variant='danger' className="w-50" onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
-            <Button variant='primary' className="w-50" onClick={handleShow}>Edit </Button></ButtonGroup>
+          <ButtonGroup >
+            <Button  id="delete" variant="custom"  onClick={()=>deleteMovie(info.id)}><i className="bi bi-trash3"></i></Button>
+            <Button  id="edit" variant="custom" onClick={handleShow}><i className="bi bi-pencil"></i></Button></ButtonGroup>
             <Card.Body className="cardbody">
               <Card.Img variant="top"src={info.image}/>
                 <Link className="title" to={`/movies/${info.id}`}><Card.Title > Title: {info.title}</Card.Title></Link> 
