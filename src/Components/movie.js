@@ -99,32 +99,28 @@ useEffect(()=>{
         </Modal.Body>
             <Modal.Footer>
                 <ButtonGroup>
-                    <Button variant="danger" onClick={handleClose} >Close</Button>
-                    <Button variant="primary" onClick={()=>{updateMovie1(info.id); handleClose()}}>Submit</Button>
+                    <Button variant="danger" className="close" onClick={handleClose}>Close</Button>
+                    <Button variant="primary" className="submit" onClick={()=>{updateMovie1(info.id); handleClose()}}>Submit</Button>
                 </ButtonGroup>
                     
             </Modal.Footer>
     </Modal>
   
 
-  <Card className="moviecard">
+  <Card className="card">
           <ButtonGroup>
             <Button variant='danger' className="w-50" onClick={()=>deleteMovie(info.id)}>Delete Movie</Button>
             <Button variant='primary' className="w-50" onClick={handleShow}>Edit </Button></ButtonGroup>
-            <Card.Body className="moviecardbody">
-            <Card.Img variant="top" src={info.image}/>
-              
-              <Link to={`/movies/${info.id}`}><Card.Title> Title: {info.title}</Card.Title></Link> 
-                  <Card.Text>
-                    Date: {info.date}
-                    <br/>
-                    Director: {info.director}
-                    <br/>
-                  </Card.Text>
-                  Stars: <ReactStars count={5} value={info.rating} edit={false}/>
-                    {/* <Comment1 updateMovie={updateMovie} 
-                              info={info} /> */}
-                  </Card.Body>
+            <Card.Body className="cardbody">
+              <Card.Img variant="top"src={info.image}/>
+                <Link className="title" to={`/movies/${info.id}`}><Card.Title > Title: {info.title}</Card.Title></Link> 
+                <Card.Text>
+                      {info.date}
+                      <br/>
+                      {info.director}
+                </Card.Text>
+                <ReactStars count={5} value={info.rating} edit={false}/>   
+            </Card.Body>
   </Card>
   
   </div>)

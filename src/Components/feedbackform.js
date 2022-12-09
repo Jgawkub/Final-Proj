@@ -59,9 +59,9 @@ const comments=feedbackData.map((f,index)=>{
        <br/>
        <div  className="d-flex justify-content-center">
         <Form className='w-50' onSubmit={postFeedback}>
-            <Form.Control type='text' id='fullName' placeholder="Name" onChange={(e)=>setFullName(e.target.value)}></Form.Control>
-            <Form.Control as='textarea' id="comment" placeholder="comment" onChange={(e)=>setComment(e.target.value)}></Form.Control>
-            <Button variant="primary" type='submit'>Submit</Button>
+            <Form.Control type='text' placeholder="Name" onChange={(e)=>setFullName(e.target.value)}></Form.Control>
+            <Form.Control as='textarea' placeholder="comment" onChange={(e)=>setComment(e.target.value)}></Form.Control>
+            <Button variant="primary" className="submit" type='submit'>Submit</Button>
         </Form>
         </div>
         {comments}

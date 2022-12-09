@@ -75,8 +75,8 @@ const updateFeedback=(id,e)=>{
             </Modal.Body>
                 <Modal.Footer>
                     <ButtonGroup>
-                        <Button variant="danger" onClick={handleClose}>Close</Button>
-                        <Button variant="primary" onClick={()=>{updateFeedback(info.id);handleClose()}}>Submit</Button>
+                        <Button variant="danger" className="close" onClick={handleClose}><i class="bi bi-x-square"></i></Button>
+                        <Button variant="primary" className="submit" onClick={()=>{updateFeedback(info.id);handleClose()}}><i class="bi bi-send"></i></Button>
                     </ButtonGroup>
                         
                 </Modal.Footer>
@@ -85,13 +85,13 @@ const updateFeedback=(id,e)=>{
       <Row className="feedbackrow">
         <Col></Col>
         <Col>
-            <Card className="feedbackcard">
-                <Card.Body className="moviecardbody">
-                    <Card.Text className= 'd-flex justify-content-center'>{info.fullName}-
+            <Card className="fcard">
+                <Card.Body className="cardbody">
+                    <Card.Text className= 'd-flex justify-content-left'>{info.fullName}-
                     <br/>{info.comment}</Card.Text>
-                        <ButtonGroup>
-                            <Button variant="danger" onClick={()=>deleteFeedback(info.id)}>Delete</Button>
-                            <Button variant="success" onClick={handleShow}>Edit</Button>
+                        <ButtonGroup className="d-flex justify-content-center">
+                            <Button variant="danger" className="delete" onClick={()=>deleteFeedback(info.id)}><i class="bi bi-trash3"></i></Button>
+                            <Button variant="success" className="edit" onClick={handleShow}><i class="bi bi-pencil"></i></Button>
                         </ButtonGroup>
                     </Card.Body>
              </Card>

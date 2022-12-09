@@ -31,7 +31,7 @@ console.log(filmData)
         
         {filmData.filter(movie=>movie.id===id).map((movie,index)=>{
             return(<div key={index}>
-            <Card style={{width:'50rem', padding:'5px'}} >
+            <Card style={{width:'40rem', padding:'5px'}} >
                
             <Card.Body>
                 <Row>

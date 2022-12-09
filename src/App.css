@@ -1,4 +1,4 @@
-
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
 /* #submit{
     background-color: yellow;
 } */
@@ -7,30 +7,39 @@
     height: 100vh;
 }
 
-.moviecard{
+.card{
     transition: .5s;
-    
     width: 18rem;
     padding: 5px;
 }
 
-.moviecardbody{
-    background-color:#50A2A7;
+.fcard{
+    transition: .5s;
+    width: 35rem;
+    padding: 5px;
 }
-.moviecard:hover{
+
+.cardbody{
+    background-color:#ACBDBA;
+    
+}
+
+.card:hover{
     top:-10px;
     transform: scale(1.05);
 }
 
 #nav{
-    background-color: #D58936;
+    background-color: #F24236;
     border-radius: 5px;
+    height:100px;
 }
 
 .li{
    padding: 1rem;
     font-size: 20px;
     text-decoration: none;
+    color: black;
   
 }
 
@@ -40,6 +49,10 @@
   
 }
 
+.title{
+    text-decoration: none;
+    
+}
 #profile{
     border-radius: 50%;
     height:300px;
@@ -53,3 +66,8 @@
 .box{
     height:100vh
 }
+
+.p{
+    text-decoration: none;
+}
+

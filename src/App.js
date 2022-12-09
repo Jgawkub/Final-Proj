@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import { Routes, Link, Route } from "react-router-dom";
 import Navigation from './Components/navbar';
 
+
 function App() {
     const[filmData,setFilmData]=useState([])
  
