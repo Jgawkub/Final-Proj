@@ -46,7 +46,7 @@ useEffect(()=>{
    });
 },[]);
 
-
+//This allows you to reset your star rating. Only problem is that you need to refresh the page to reflect the change. 
 const ratingNChanged = (newRating) => {
   console.log(newRating)
   setNStar(newRating);
@@ -76,8 +76,8 @@ const ratingNChanged = (newRating) => {
             <Form.Control type='number' id="date1" placeholder="Year" onChange={(e)=>{setNDate(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='director1' placeholder="Director" onChange={(e)=>{setNDirector(e.target.value)}}></Form.Control>
             <Form.Control type='text' id='url1'placeholder="Image URL" onChange={(e)=>{setNImage(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='plot1' rows={3} placeholder="Plot"onChange={(e)=>{setNPlot(e.target.value)}}></Form.Control>
-            <Form.Control as='textarea' id='review1' rows={3} placeholder="Review"onChange={(e)=>{setNReview(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='plot1' rows={3} placeholder="Plot" value={nplot} onChange={(e)=>{setNPlot(e.target.value)}}></Form.Control>
+            <Form.Control as='textarea' id='review1' rows={3} placeholder="Review" value={nreview} onChange={(e)=>{setNReview(e.target.value)}}></Form.Control>
             <ReactStars count={5} size={24} onChange={ratingNChanged}/>
         </Modal.Body>
             <Modal.Footer>

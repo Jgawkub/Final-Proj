@@ -12,7 +12,7 @@ import ReactStars from "react-rating-stars-component"
 
 
 //This component just renders an individual view of the film. 
-export default function IndividualMovie({ info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle, star, setStar, rating, newRating }){
+export default function IndividualMovie({ info, getFilmData, filmData, setFilmData, }){
     const filmEndpoint= "https://6352caffd0bca53a8eb55114.mockapi.io/films"
     
     

@@ -41,9 +41,9 @@ export default function MovieForm({test,filmData,setFilmData}){
         });
     },[]);
 
-  const ratingChanged = (newRating) => {
-        console.log(newRating)
-        setStar(newRating);
+  const ratingChanged = (nnewRating) => {
+        console.log(nnewRating)
+        setStar(nnewRating);
       };
 
  const getFilmData=()=>{
@@ -60,11 +60,11 @@ export default function MovieForm({test,filmData,setFilmData}){
             director,
             image, 
             plot,
+            review,
             star,
-            review
-        }).then(()=>{getFilmData()});
+        }).then(()=>{getFilmData(); clearInput()});
         console.log(title+director)
-        clearInput()
+       
     }
     const deletMovie=(id)=>{
         console.log("deleting"+ id)
@@ -77,14 +77,8 @@ export default function MovieForm({test,filmData,setFilmData}){
         document.getElementById('director').value=('')
         document.getElementById('url').value=('')  
         document.getElementById('plot').value=('')
+        document.getElementById('review').value=('')
     }
-
-
-
-// const blah = filmData.filter(displayOne)
-
-// console.log(()=>displayOne)
-
 
 
     
@@ -104,18 +98,13 @@ export default function MovieForm({test,filmData,setFilmData}){
                     image={image}
                     review={review}
                     plot={plot}
-                    ratingChanged={ratingChanged}
-                    star={star}
-                    setStar={setStar}
-                
-                    />
-                    
-          </div>)    
+                    stat={star}
+                    /></div>)    
                 })
 
     return(
     <>
-     <h3 className="headings">Below are some of my favorite movies. Why don't you add your own</h3>
+     <h3 className="headings">Below are some of my favorite movies. Why don't you add your own!</h3>
      <Row>
      <Col></Col>
      <Col xs={8}>
@@ -130,8 +119,8 @@ export default function MovieForm({test,filmData,setFilmData}){
                     <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
                     <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
                     <Form.Control as='textarea' id='review' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
-                    <ReactStars count={5} size={24} onChange={ratingChanged}/>
-                    <Dropdown.Item  as="button"><Button className="submit" variant="primary" type='submit'><i class="bi bi-send"></i></Button></Dropdown.Item>
+                    <ReactStars id='stars' count={5} size={24} onChange={ratingChanged} value={0}/>
+                    <Dropdown.Item  as="button"><Button className="submit" variant="primary" type='submit'><i className="bi bi-send"></i></Button></Dropdown.Item>
                 </Form>
             </Dropdown.Menu>
         </div>
@@ -141,7 +130,7 @@ export default function MovieForm({test,filmData,setFilmData}){
     </Row>
         <br/>
         <div className="d-flex justify-content-center">
-            <Form.Control className=" w-50" type='text' id='filter' placeholder="Filter by Title (lower case)" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
+            <Form.Control className="w-50" type='text' id='filter' placeholder="Filter by Title (lower case)" onChange={(e)=>{setSearch(e.target.value)}}></Form.Control>
         </div>
         <br/>
     <Row>

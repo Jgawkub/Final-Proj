@@ -55,7 +55,7 @@ const comments=feedbackData.map((f,index)=>{
         deleteFeedback={deleteFeedback}/></div>)
 })
 
-    return(<div>Thank you for visiting my page and checking out my final project. Please leave any feedback, or other thoughts, below!
+    return(<div><h3 className="headings">Thank you for visiting my page and checking out my final project. Please leave your thoughts, below!</h3>
        <br/>
        <div  className="d-flex justify-content-center">
         <Form className='w-50' onSubmit={postFeedback}>
