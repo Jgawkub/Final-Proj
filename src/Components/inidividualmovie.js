@@ -5,14 +5,14 @@ import Card from 'react-bootstrap/Card'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import axios from "axios"
-
+import ReactStars from "react-rating-stars-component"
 
 
 
 
 
 //This component just renders an individual view of the film. 
-export default function IndividualMovie({ info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle, star, newRating}){
+export default function IndividualMovie({ info, getFilmData, filmData, setFilmData, deleteMovie, setToggle, toggle, star, setStar, rating, newRating }){
     const filmEndpoint= "https://6352caffd0bca53a8eb55114.mockapi.io/films"
     
     
@@ -27,28 +27,30 @@ export default function IndividualMovie({ info, getFilmData, filmData, setFilmDa
 console.log(filmData)
     return(<Container className=" box d-flex align-items-center justify-content-center " >
         
-    
+    {/* Here I am just rendering the  */}
         
         {filmData.filter(movie=>movie.id===id).map((movie,index)=>{
             return(<div key={index}>
-            <Card style={{width:'40rem', padding:'5px'}} >
+            <Card className="fcard"  >
                
-            <Card.Body>
+            <Card.Body className="cardbody">
                 <Row>
                     <Col>
                         <Card.Img src={movie.image}/>
                     </Col>
                     <Col>
-                    {movie.title}
+                    <h2>{movie.title}</h2>
+                    <b>{movie.date}</b>
                         <br/>
-                    {movie.date}
-                        <br/>
-                    {movie.director}
+                    <b>{movie.director}</b>
+                    
                         <div className="border-bottom border-dark"></div>
+                    Plot: {movie.plot}
                         <br/>
-                    {movie.plot}
-                        <br/>
-                    {movie.review}
+                        <div className="border-bottom border-dark"></div>
+                        <ReactStars count={5} size={20} value={movie.star} edit={false}/>  
+                    My thoughts: {movie.review}
+                   
                     </Col>
                 </Row>
             </Card.Body>

@@ -2,15 +2,15 @@ import React,{useState,useEffect} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton'
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
+
 import axios from "axios";
 import Movie from "./movie";
 import Stack from 'react-bootstrap/Stack';
 import ReactStars from "react-rating-stars-component";
-import Test from "./inidividualmovie";
+
 
 
 
@@ -29,8 +29,8 @@ export default function MovieForm({test,filmData,setFilmData}){
     const[image,setImage]=useState('')
     const[plot,setPlot]=useState('')
     const[search,setSearch]=useState('')
-    const[star,setStar]=useState(null)
     const[review,setReview]=useState('')
+    const[star,setStar]=useState(null)
 
 
 
@@ -41,7 +41,7 @@ export default function MovieForm({test,filmData,setFilmData}){
         });
     },[]);
 
-    const ratingChanged = (newRating) => {
+  const ratingChanged = (newRating) => {
         console.log(newRating)
         setStar(newRating);
       };
@@ -60,13 +60,11 @@ export default function MovieForm({test,filmData,setFilmData}){
             director,
             image, 
             plot,
-            rating: star,
+            star,
             review
         }).then(()=>{getFilmData()});
         console.log(title+director)
         clearInput()
-      
-
     }
     const deletMovie=(id)=>{
         console.log("deleting"+ id)
@@ -75,7 +73,7 @@ export default function MovieForm({test,filmData,setFilmData}){
     // I use this to just clear the inputs in my post. 
     const clearInput=()=>{
         document.getElementById('title').value=('')
-        document.getElementById('date').value=('')
+        document.getElementById('year').value=('')
         document.getElementById('director').value=('')
         document.getElementById('url').value=('')  
         document.getElementById('plot').value=('')
@@ -100,19 +98,16 @@ export default function MovieForm({test,filmData,setFilmData}){
                     getFilmData={getFilmData}
                     setFilmData={setFilmData}
                     deleteMovie={deletMovie}
+                    title={title}
+                    date={date}
+                    director={director}
+                    image={image}
+                    review={review}
+                    plot={plot}
+                    ratingChanged={ratingChanged}
                     star={star}
                     setStar={setStar}
-                    title={title}
-                    setTitle={setTitle}
-                    date={date}
-                    setDate={setDate}
-                    director={director}
-                    setDirector={setDirector}
-                    image={image}
-                    setImage={setImage}
-                    plot={plot}
-                    setPlot={setPlot}
-                    // displayOne={displayOne}
+                
                     />
                     
           </div>)    
@@ -120,7 +115,7 @@ export default function MovieForm({test,filmData,setFilmData}){
 
     return(
     <>
-     Below are some of my favorite movies. Why don't you add your own
+     <h3 className="headings">Below are some of my favorite movies. Why don't you add your own</h3>
      <Row>
      <Col></Col>
      <Col xs={8}>
@@ -130,7 +125,7 @@ export default function MovieForm({test,filmData,setFilmData}){
             <Dropdown.Menu className="w-100">
                     <Form onSubmit={postMovie} style={{padding:'10px'}}>
                     <Form.Control type='text' id="title" placeholder="Title" onChange={(e)=>{setTitle(e.target.value)}}></Form.Control>
-                    <Form.Control type='number' id="date" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
+                    <Form.Control type='number' id="year" placeholder="Date" onChange={(e)=>{setDate(e.target.value)}}></Form.Control>
                     <Form.Control type='text' id='director' placeholder="Director" onChange={(e)=>{setDirector(e.target.value)}}></Form.Control>
                     <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
                     <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>

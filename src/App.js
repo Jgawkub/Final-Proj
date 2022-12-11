@@ -11,17 +11,18 @@ import { Routes, Link, Route } from "react-router-dom";
 import Navigation from './Components/navbar';
 import Footer from './Components/footer';
 
+//I keep my API data up in AP JS allows to pass down tto the movieform and individual movie components 
+
 function App() {
     const[filmData,setFilmData]=useState([])
- 
+    
     return ( 
     <Container id="page">
       <Navigation/>
-
     <Routes> 
         <Route path='/' element={<Home />}/>
         <Route path='/feedback' element={<FeedbackForm/>}/>
-        <Route path='/movieform/' element={<MovieForm filmData={filmData} setFilmData={setFilmData}/>}/>
+        <Route path='/movieform/' element={<MovieForm filmData={filmData}  setFilmData={setFilmData}/>}/>
         <Route path='/movies/:id' element={<IndividualMovie filmData={filmData} setFilmData={setFilmData}/>}/>
     </Routes>
 <br/>

@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function Footer(){
-    return(<div id="box">
-lghmrlkghkl;twernghl;kwrtnhkl;wrnthkl;nrthjkl;nrth
+    return(<div id="footerbox">
+    J.M.G INC © | 2022 | NYC & Co. | Legal Disclaimer
     </div>)
 } 

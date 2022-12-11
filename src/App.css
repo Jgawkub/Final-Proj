@@ -5,8 +5,6 @@
     min-height:100vh;
     display: flex;
     flex-direction: column;
-
-    
 }
 
 #navtitle{
@@ -16,6 +14,7 @@
     transition: .5s;
     width: 18rem;
     padding: 5px;
+    height:5rem
 }
 
 .fcard{
@@ -51,11 +50,6 @@
   
 }
 
-.feedbackcard{
-    width: 30rem;
-    background-color:red;
-  
-}
 
 .title{
     text-decoration: none;
@@ -64,12 +58,10 @@
 #profile{
     border-radius: 50%;
     height:300px;
-    padding: 5px
+    padding: 5px;
+    margin:auto
 }
 
-/* .h{
-    height: 100vh;
-} */
 
 .box{
     height:100vh
@@ -103,13 +95,16 @@
     background-color: #523249;
 }
 
-#box{
+#footerbox{
     height:15vh;
-    background-color:yellow;
+    background-color: #114B5F;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: auto;
+    color: white;
+    font-size: 12px;
+    border-radius: 5px;
 }
 
 .test{
@@ -117,3 +112,7 @@
     color: #FE4A49;
 }
 
+
+.headings{
+    text-align: center;
+}
