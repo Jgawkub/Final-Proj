@@ -28,7 +28,7 @@ export default function Movie({info, getFilmData,filmData, setFilmData, deleteMo
  const [nstar,setNStar]=useState(null)
 
 
-//With this useEffect I filter and then set the states for all the various pieces of data so that when I go into a form to edit just one piece of information the others don't go blank. 
+//With this useEffect I filter and then set the states for all the various pieces of data so that when I go into a form to edit just one piece of information the others don't go blank. I am pulling from the API and filtering with ids to make sure the right information is set. 
 useEffect(()=>{
   axios.get(filmEndpoint).then((response)=>{
       setFilmData(response.data);
@@ -41,8 +41,7 @@ useEffect(()=>{
           setNPlot(film.plot)
           setNReview(film.review)
           setNStar(film.star)
-      })
-         
+      })  
    });
 },[]);
 
@@ -52,7 +51,7 @@ const ratingNChanged = (nnewRating) => {
   setNStar(nnewRating);
 };
 
-//This update is if I would like to edit the details, I set the state up in the movie list to whatever the state is in each individual movie is an to avoid having one field change all the other.s 
+//This update is if I would like to edit the details, I set the state up in the movie list to whatever the state is in each individual movie is and to avoid having one field change all the other.
  const updateMovie=(id,e)=>{
   axios.put(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`,{  
     title: ntitle,

@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react'
-import styles from './App.css';
+import './App.css';
 import MovieForm from './Components/movieform';
 import FeedbackForm from './Components/feedbackform';
 import Home from './Components/home';

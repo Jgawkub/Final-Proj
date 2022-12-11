@@ -9,8 +9,7 @@ import Form from 'react-bootstrap/Form'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Movie from "./movie";
 
-export default function Feedback({ info, fullName, comment, setComment, setFullName, feedbackData, getFeedbackData, deleteFeedback,setFeedbackData }){
-    const [editBox,setEditBox]=useState(false)
+export default function Feedback({ info, feedbackData, getFeedbackData, deleteFeedback,setFeedbackData }){
     const feedbackEndpoint= 'https://6352caffd0bca53a8eb55114.mockapi.io/feedback'
     const [show, setShow] = useState(false)
     const handleClose = () => setShow(false);

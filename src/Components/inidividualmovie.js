@@ -12,7 +12,7 @@ import ReactStars from "react-rating-stars-component"
 
 
 //This component just renders an individual view of the film. 
-export default function IndividualMovie({ info, getFilmData, filmData, setFilmData, }){
+export default function IndividualMovie({filmData, setFilmData, }){
     const filmEndpoint= "https://6352caffd0bca53a8eb55114.mockapi.io/films"
     
     
@@ -27,7 +27,7 @@ export default function IndividualMovie({ info, getFilmData, filmData, setFilmDa
 console.log(filmData)
     return(<Container className=" box d-flex align-items-center justify-content-center " >
         
-    {/* Here I am just rendering the individual movie */}
+    {/* Here I am just rendering the individual movie by checking to see if the information passed in matches the movie I clicked  */}
         
         {filmData.filter(movie=>movie.id===id).map((movie,index)=>{
             return(<div key={index}>

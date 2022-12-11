@@ -12,13 +12,8 @@ import ReactStars from "react-rating-stars-component";
 
 
 
-//To Do still:
-//1. Do a filter method that would allow people to select movies based on a particular criteria. Separate component? Did this. How to make this into something that I can do on click.
-//2.  If time, create a way to push films to add selected films to like a to a too watch list. 
-//3. When somone clicks on a movie card, it takes them to just a singular vision. 
-//4. Let people edit the movie details?
 
-//In this component I handle my posting and getting data. I load all my movie info to an API. All these states are a little verbose, could I put these in the API itself? 
+//In this component I handle my posting and getting data. I load all my movie info to an API. All these states are a little verbose.
 export default function MovieForm({test,filmData,setFilmData}){
     const filmEndpoint= "https://6352caffd0bca53a8eb55114.mockapi.io/films"
     const[title,setTitle]=useState('')
@@ -38,12 +33,12 @@ export default function MovieForm({test,filmData,setFilmData}){
             console.log(response.data)
         });
     },[]);
-
+//Handles star rating change
   const ratingChanged = (newRating) => {
         console.log(newRating)
         setStar(newRating);
       };
-
+//below are my API calls 
  const getFilmData=()=>{
         axios.get(filmEndpoint).then((getFilmData)=>{
             setFilmData(getFilmData.data)
@@ -76,7 +71,7 @@ const clearInput=()=>{
         document.getElementById('url').value=('')  
         document.getElementById('plot').value=('')
         document.getElementById('review').value=('')
-        document.getElementById('stars').value=(0)
+        document.getElementById('stars').value=("0")
     }
 
 
