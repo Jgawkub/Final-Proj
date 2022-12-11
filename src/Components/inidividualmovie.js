@@ -27,7 +27,7 @@ export default function IndividualMovie({ info, getFilmData, filmData, setFilmDa
 console.log(filmData)
     return(<Container className=" box d-flex align-items-center justify-content-center " >
         
-    {/* Here I am just rendering the  */}
+    {/* Here I am just rendering the individual movie */}
         
         {filmData.filter(movie=>movie.id===id).map((movie,index)=>{
             return(<div key={index}>
@@ -45,11 +45,11 @@ console.log(filmData)
                     <b>{movie.director}</b>
                     
                         <div className="border-bottom border-dark"></div>
-                    Plot: {movie.plot}
+                    <b>Plot: </b>{movie.plot}
                         <br/>
                         <div className="border-bottom border-dark"></div>
                         <ReactStars count={5} size={20} value={movie.star} edit={false}/>  
-                    My thoughts: {movie.review}
+                    <b>My thoughts:</b> {movie.review}
                    
                     </Col>
                 </Row>

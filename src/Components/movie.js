@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal'
 import React, {useState, useEffect} from "react";
 import Card from"react-bootstrap/Card"
 import axios from "axios";
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ReactStars from "react-rating-stars-component";
 
 
@@ -14,7 +14,7 @@ import ReactStars from "react-rating-stars-component";
 
 
 
-export default function Movie({info, getFilmData,filmData, setFilmData, deleteMovie, star, setStar, ratingChanged }){
+export default function Movie({info, getFilmData,filmData, setFilmData, deleteMovie }){
  const [show, setShow] = useState(false)
  const handleClose = () => setShow(false);
  const handleShow = () => setShow(true);
@@ -47,9 +47,9 @@ useEffect(()=>{
 },[]);
 
 //This allows you to reset your star rating. Only problem is that you need to refresh the page to reflect the change. 
-const ratingNChanged = (newRating) => {
-  console.log(newRating)
-  setNStar(newRating);
+const ratingNChanged = (nnewRating) => {
+  console.log(nnewRating)
+  setNStar(nnewRating);
 };
 
 //This update is if I would like to edit the details, I set the state up in the movie list to whatever the state is in each individual movie is an to avoid having one field change all the other.s 

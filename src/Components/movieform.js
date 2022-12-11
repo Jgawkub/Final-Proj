@@ -2,10 +2,8 @@ import React,{useState,useEffect} from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Dropdown from 'react-bootstrap/Dropdown';
-
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
 import axios from "axios";
 import Movie from "./movie";
 import Stack from 'react-bootstrap/Stack';
@@ -41,9 +39,9 @@ export default function MovieForm({test,filmData,setFilmData}){
         });
     },[]);
 
-  const ratingChanged = (nnewRating) => {
-        console.log(nnewRating)
-        setStar(nnewRating);
+  const ratingChanged = (newRating) => {
+        console.log(newRating)
+        setStar(newRating);
       };
 
  const getFilmData=()=>{
@@ -52,7 +50,7 @@ export default function MovieForm({test,filmData,setFilmData}){
         })
     }
   
-    const postMovie=(e)=>{
+const postMovie=(e)=>{
         e.preventDefault()
         axios.post(filmEndpoint,{
             title,
@@ -66,18 +64,19 @@ export default function MovieForm({test,filmData,setFilmData}){
         console.log(title+director)
        
     }
-    const deletMovie=(id)=>{
+const deletMovie=(id)=>{
         console.log("deleting"+ id)
         axios.delete(`https://6352caffd0bca53a8eb55114.mockapi.io/films/${id}`).then(()=>{getFilmData()})
     }
     // I use this to just clear the inputs in my post. 
-    const clearInput=()=>{
+const clearInput=()=>{
         document.getElementById('title').value=('')
         document.getElementById('year').value=('')
         document.getElementById('director').value=('')
         document.getElementById('url').value=('')  
         document.getElementById('plot').value=('')
         document.getElementById('review').value=('')
+        document.getElementById('stars').value=(0)
     }
 
 
@@ -98,7 +97,7 @@ export default function MovieForm({test,filmData,setFilmData}){
                     image={image}
                     review={review}
                     plot={plot}
-                    stat={star}
+                    star={star}
                     /></div>)    
                 })
 
@@ -119,7 +118,7 @@ export default function MovieForm({test,filmData,setFilmData}){
                     <Form.Control type='text' id='url'placeholder="Image URL" onChange={(e)=>{setImage(e.target.value)}}></Form.Control>
                     <Form.Control as='textarea' id='plot' rows={3} placeholder="Plot"onChange={(e)=>{setPlot(e.target.value)}}></Form.Control>
                     <Form.Control as='textarea' id='review' rows={3} placeholder="Review"onChange={(e)=>{setReview(e.target.value)}}></Form.Control>
-                    <ReactStars id='stars' count={5} size={24} onChange={ratingChanged} value={0}/>
+                    <ReactStars id='stars' count={5} size={24} onChange={ratingChanged} />
                     <Dropdown.Item  as="button"><Button className="submit" variant="primary" type='submit'><i className="bi bi-send"></i></Button></Dropdown.Item>
                 </Form>
             </Dropdown.Menu>
